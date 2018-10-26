@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -15,7 +16,15 @@ namespace HttpPractice.Controllers
             return View();
         }
 
-        public IActionResult PageTwo()
+        public IActionResult PageTwo(string mascott)
+        {
+            // get url value
+            string mascottValue = HttpUtility.HtmlDecode(mascott);
+            // pass to view
+            return View("PageTwo", mascottValue);
+        }
+               
+        public IActionResult PageThree()
         {
             return View();
         }
@@ -45,7 +54,7 @@ namespace HttpPractice.Controllers
             return View(numbers);
         }
 
-        [HttpPut]
+        [HttpPost]
         public IActionResult Quiz2(int number1, int number2, int answer)
         {
             string check = "wrong :-(";
